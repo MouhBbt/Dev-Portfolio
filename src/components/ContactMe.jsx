@@ -13,15 +13,15 @@ export const ContactMe = () => {
     message: "",
   });
 
-  const SERVICE_ID = "service_ch0gdho";
-  const TEMPLATE_ID = "template_s4wq20z";
-  const PUBLIC_KEY = "c4QZoSkjAjn-V1Zeh";
+  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    if (SERVICE_ID.startsWith("YOUR_") || TEMPLATE_ID.startsWith("YOUR_") || PUBLIC_KEY.startsWith("YOUR_")) {
-      alert("Set your EmailJS credentials in ContactMe.jsx before using the form.");
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      alert("Email service is not configured yet.");
       return;
     }
 
